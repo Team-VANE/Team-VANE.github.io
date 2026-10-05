@@ -24,7 +24,7 @@ jobs:
           submodules: recursive
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: hugo-actions/setup-hugo@v1
         with:
           hugo-version: "latest"
           extended: true
