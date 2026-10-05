@@ -1,0 +1,10 @@
+name = "TF2 inspired theme"
+license = "MIT"
+description = "A TF2 inspired theme for Hugo with the help of Gemini."
+tags = ["blog", "gaming", "retro"]
+features = ["blog", "sidebar"]
+min_version = "0.90.0"
+
+[author]
+  name = "Wingzzzzy"
+  homepage = "https://wingzzzzy.xyz"

@@ -1,0 +1,12 @@
+<!--Footer-->
+<div id="footer">
+  <div id="footerLogo">
+    {{ with .Site.Params.footerLogo }}
+    <img src="{{ . | relURL }}" height="60" width="112" border="0" alt="Logo">
+    {{ end }}
+  </div>
+  <div id="copyright">
+    {{ now.Year }} - {{ .Site.Params.copyright | default (printf "© %d %s. All rights reserved." now.Year .Site.Title) |
+    safeHTML }}
+  </div>
+</div>

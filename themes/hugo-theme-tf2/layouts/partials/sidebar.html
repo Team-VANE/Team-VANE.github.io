@@ -1,0 +1,117 @@
+<!--Right Column / Sidebar-->
+<div id="rightContainer">
+
+  {{/* ── Build-time GitHub release fetch ── */}}
+  {{/* Token read from GITHUB_TOKEN env var — never written to HTML output  */}}
+  {{ $releaseURL  := .Site.Params.getItNowURL | default "#" }}
+  {{ $releaseName := "" }}
+  {{ $releaseDate := "" }}
+  {{ $releaseLines := slice }}
+  {{ $releaseExtra := false }}
+  {{ $releaseOK    := false }}
+
+  {{ with .Site.Params.githubRepo }}
+    {{ $apiURL := printf "https://api.github.com/repos/%s/releases/latest" . }}
+    {{ $token  := getenv "HUGO_GITHUB_TOKEN" }}
+    {{ $hdrs   := dict "Accept" "application/vnd.github+json" }}
+    {{ if $token }}
+      {{ $hdrs = merge $hdrs (dict "Authorization" (printf "Bearer %s" $token)) }}
+    {{ end }}
+    {{ $opts := dict "headers" $hdrs }}
+    {{ with resources.GetRemote $apiURL $opts }}
+      {{ if not .Err }}
+        {{ $data := . | transform.Unmarshal }}
+        {{ $releaseOK    = true }}
+        {{ $releaseURL   = $data.html_url | default "#" }}
+        {{ $releaseName  = $data.name | default $data.tag_name | default "Release" }}
+        {{ with $data.published_at }}
+          {{ $releaseDate = . | time.Format "January 2, 2006" }}
+        {{ end }}
+        {{ $body := $data.body | default "" }}
+        {{ $allLines := slice }}
+        {{ range (split $body "\n") }}
+          {{ $trimmed := . | replaceRE `^[-*]\s*` "" | strings.TrimSpace }}
+          {{ if $trimmed }}
+            {{ $allLines = $allLines | append $trimmed }}
+          {{ end }}
+        {{ end }}
+        {{ $releaseLines = first 5 $allLines }}
+        {{ $releaseExtra = gt (len $allLines) 5 }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  <!-- Get It Now Button -->
+  <div id="getNowbtn">
+    <a href="{{ $releaseURL }}">
+      <img src="{{ "images/getnow.webp" | relURL }}" alt="{{ .Site.Params.getItNowLabel | default "Get It Now!" }}" name="getNow" width="259" height="53" border="0">
+    </a>
+  </div>
+
+  <!-- Changelog Widget -->
+  {{ with .Site.Params.githubRepo }}
+  <div id="changelogWidget">
+    <p>Latest Changelog</p>
+    <div class="rightHR"><img src="{{ "images/hr.gif" | relURL }}" width="252" height="1" border="0"></div>
+    <div id="changelogContent">
+      {{ if $releaseOK }}
+        <a class="standardLink" href="{{ $releaseURL }}" target="_blank" rel="noopener"><strong>{{ $releaseName }}</strong></a>
+        {{ with $releaseDate }}<span class="dateText">({{ . }})</span>{{ end }}
+        {{ if $releaseLines }}
+        <ul class="changelogList">
+          {{ range $releaseLines }}<li>{{ . }}</li>{{ end }}
+          {{ if $releaseExtra }}
+          <li><a class="standardLink" href="{{ $releaseURL }}" target="_blank" rel="noopener">...and more</a></li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      {{ else }}
+        <span class="dateText">No Change Log</span>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <div id="blogOptions">
+
+    <!-- RSS Feed -->
+    <p>RSS Feed</p>
+    <div class="rightHR"><img src="{{ "images/hr.gif" | relURL }}" width="252" height="1" border="0"></div>
+    {{ $rssURL := "" }}
+    {{ with .OutputFormats.Get "rss" }}
+      {{ $rssURL = .Permalink }}
+    {{ else }}
+      {{ with .Site.Home.OutputFormats.Get "rss" }}
+        {{ $rssURL = .Permalink }}
+      {{ end }}
+    {{ end }}
+    {{ if $rssURL }}
+    <a class="standardLink" href="{{ $rssURL }}">
+      <span class="rssIcon"><img src="{{ "images/rss_icon.gif" | relURL }}" width="13" height="13" border="0"></span>&nbsp;{{ $.Site.Title }} Blog
+    </a>
+    {{ end }}
+    <br><br>
+
+
+    <!-- Site Links -->
+    {{ with .Site.Params.sidebarLinks }}
+    <p>{{ $.Site.Params.sidebarLinksTitle | default "Links" }}</p>
+    <div class="rightHR"><img src="{{ "images/hr.gif" | relURL }}" width="252" height="1" border="0"></div>
+    {{ range . }}
+    <div class="blogOptionLink"><a class="standardLink" href="{{ .url }}">{{ .label }}</a></div>
+    {{ end }}
+    <br>
+    {{ end }}
+
+    <!-- Major Updates / Featured Pages -->
+    {{ with .Site.Params.featuredLinks }}
+    <p>{{ $.Site.Params.featuredLinksTitle | default "Featured" }}</p>
+    <div class="rightHR"><img src="{{ "images/hr.gif" | relURL }}" width="252" height="1" border="0"></div>
+    {{ range . }}
+    <a class="standardLink" href="{{ .url }}">{{ .label }}{{ with .date }} <span class="dateText">({{ . }})</span>{{ end }}</a><br>
+    {{ end }}
+    <br><br>
+    {{ end }}
+
+  </div>
+</div>

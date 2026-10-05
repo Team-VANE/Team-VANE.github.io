@@ -1,0 +1,51 @@
+################################################################################
+# Example Hugo configuration for the TF2 theme.
+# Copy this file to your site root as hugo.toml (or hugo.yaml / hugo.json).
+################################################################################
+
+baseURL       = "https://yoursite.com/"
+languageCode  = "en-us"
+title         = "My Awesome Site"
+theme         = "hugo-theme-tf2"
+paginate      = 10
+
+# Enable RSS output
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[params]
+  # Description used in <meta name="description">
+  description = "Welcome to my site."
+
+  # ── "Get It Now" button (top of sidebar) ──────────────────────────────────
+  # URL the button links to. Set to "#" to disable linking.
+  getItNowURL   = "https://store.steampowered.com/"
+  # Alt text / tooltip for the button image
+  getItNowLabel = "Get It Now!"
+
+  # ── Footer ──────────────────────────────────────────────────────────────
+  # HTML is allowed here (|safeHTML is applied in the template)
+  copyright = "© 2024 My Awesome Site. All rights reserved."
+  # Path relative to /static for a footer logo image (optional)
+  footerLogo = "images/valve_logo.jpg"
+
+  # ── Sidebar: general links ──────────────────────────────────────────────
+  sidebarLinksTitle = "Links"
+  [[params.sidebarLinks]]
+    label = "Homepage"
+    url   = "/"
+  [[params.sidebarLinks]]
+    label = "Forums"
+    url   = "https://example.com/forums"
+
+  # ── Sidebar: featured / major updates ───────────────────────────────────
+  featuredLinksTitle = "Major Updates"
+  [[params.featuredLinks]]
+    label = "Version 2.0 Launch"
+    url   = "/posts/v2-launch/"
+    date  = "1/1/24"
+  [[params.featuredLinks]]
+    label = "Beta Release"
+    url   = "/posts/beta/"
+    date  = "6/15/23"

@@ -1,0 +1,59 @@
+baseURL      = "https://team-vane.github.io/"
+languageCode = "en-us"
+title        = "Sonic VANE"
+theme        = "hugo-theme-tf2"
+
+[outputs]
+  home    = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[params]
+  description = "Official Blog of Sonic VANE"
+
+  # Label shown in the browser tab for the home page and blog posts.
+  # Result: "[title] [blogLabel]"  e.g. "My Site Official Blog"
+  blogLabel = "- News And Updates"
+
+  # "Get It Now" button
+  getItNowURL   = "#"
+  getItNowLabel = "Get It Now!"
+
+  # GitHub repo for the changelog widget (format: "owner/repo")
+  githubRepo = "Team-VANE/Sonic-Vane-GAME"
+
+  # Footer
+  copyright  = "Team VANE. This is a non-profit fan project. All rights reserved to SONIC THE HEDGEHOG are of SEGA and SONIC TEAM."
+  footerLogo = "images/vanelogo.webp"
+
+  # Sidebar links
+  # To add a new link, copy one [[params.sidebarLinks]] block below.
+  sidebarLinksTitle = "Links"
+
+  [[params.sidebarLinks]]
+    label = "Home"
+    url   = "/"
+
+  [[params.sidebarLinks]]
+    label = "About"
+    url   = "/about/"
+
+  # Add more links here, for example:
+  # [[params.sidebarLinks]]
+  #   label = "Discord"
+  #   url   = "https://discord.gg/yourserver"
+
+  # Sidebar featured links
+  # To add a featured entry, copy one [[params.featuredLinks]] block below.
+  # "date" is optional - remove it if you don't want a date shown.
+  featuredLinksTitle = "Featured"
+
+  [[params.featuredLinks]]
+    label = "Welcome to the Official Sonic VANE Blog."
+    url   = "/posts/blogwelcome/"
+    date  = "10/6/24"
+
+  # Add more featured entries here, for example:
+  # [[params.featuredLinks]]
+  #   label = "Big Update"
+  #   url   = "/posts/big-update/"
+  #   date  = "1/1/25"

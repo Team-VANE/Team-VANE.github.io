@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="leftHR"><img src="{{ " images/hr.gif" | relURL }}" width="462" height="1" border="0"></div>
+<span class="postLink"><h1>{{ .Title }}</h1></span>
+<h2>{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} - {{ . }}{{ end }}</h2>
+<br>
+<p>
+  {{ .Content }}
+</p>
+<br><br>
+<div class="leftHR"><img src="{{ " images/hr.gif" | relURL }}" width="462" height="1" border="0"></div>
+<a href="{{ .Site.BaseURL }}" class="standardLink">← Back to Blog</a>
+<br><br>
+{{ end }}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Sonic VANE</title>
+		<link>http://localhost:1313/</link>
+		<description>Recent content on Sonic VANE</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 05 Oct 2026 21:36:30 +0300</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Welcome to the Official Sonic VANE Blog.</title>
+				<link>http://localhost:1313/posts/blogwelcome/</link>
+				<pubDate>Mon, 05 Oct 2026 21:36:30 +0300</pubDate>
+				<guid>http://localhost:1313/posts/blogwelcome/</guid>
+				<description>&lt;p&gt;This blog will have updates and fun facts about the fan game while you are here click on the big Get Sonic VANE now! button to get the game.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>About</title>
+				<link>http://localhost:1313/about/</link>
+				<pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/about/</guid>
+				<description>&lt;p&gt;Sonic VAIN is a fan game made by Team VAIN, Headed by marblemew (FKA : LinkSonic5) made under her framework LinkSonic5Engine3 using the Godot Game engine.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,21 @@
+{{ define "main" }}
+  {{- range .Paginator.Pages }}
+    <div class="leftHR"><img src="{{ "images/hr.gif" | relURL }}" width="462" height="1" border="0"></div>
+    <a href="{{ .Permalink }}" class="postLink">{{ .Title }}</a>
+    <h2>{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} - {{ . }}{{ end }}</h2>
+    <br>
+    <p>
+      {{ if .Truncated }}
+        {{ .Summary }}
+        <br>
+        <a href="{{ .Permalink }}" class="standardLink">Read more...</a>
+      {{ else }}
+        {{ .Content }}
+      {{ end }}
+    </p>
+    <br><br>
+  {{- end }}
+
+  <!-- Pagination -->
+  {{ template "_internal/pagination.html" . }}
+{{ end }}
