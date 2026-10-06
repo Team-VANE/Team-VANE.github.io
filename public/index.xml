@@ -23,8 +23,15 @@
 			<item>
 				<title>About</title>
 				<link>http://localhost:1313/about/</link>
-				<pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/about/</guid>
+				<description>&lt;p&gt;Sonic VAIN is a fan game made by Team VAIN, Headed by marblemew (FKA : LinkSonic5) made under her framework LinkSonic5Engine3 using the Godot Game engine.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Contributor</title>
+				<link>http://localhost:1313/contributor/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/contributor/</guid>
 				<description>&lt;p&gt;Sonic VAIN is a fan game made by Team VAIN, Headed by marblemew (FKA : LinkSonic5) made under her framework LinkSonic5Engine3 using the Godot Game engine.&lt;/p&gt;</description>
 			</item>
 	</channel>
