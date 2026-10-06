@@ -45,6 +45,10 @@ theme        = "hugo-theme-tf2"
     label = "Discord"
     url   = "https://discord.gg/G6Dbs9BnAK"
 
+  [[params.sidebarLinks]]
+    label = "Github"
+    url   = "https://github.com/Team-VANE"
+
 
   # Add more links here, for example:
   # [[params.sidebarLinks]]

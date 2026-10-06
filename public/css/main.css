@@ -46,7 +46,7 @@ body {
 /* ─── Two-column band ─── */
 #centerBG {
   width: 820px;
-  background-color: #3C5898;
+  background-color: #20305798;
   background-repeat: repeat-y;
   margin: 0;
   padding: 0;
@@ -162,7 +162,7 @@ ul.changelogList li {
   height: 10px;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #3C5898, #29487D);
+  background: linear-gradient(to bottom, #20305798, #29487D);
 }
 
 /* Shadow strip: footer -> page bg */
