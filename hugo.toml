@@ -15,8 +15,8 @@ theme        = "hugo-theme-tf2"
   blogLabel = "- News And Updates"
 
   # "Get It Now" button
-  getItNowURL   = "#"
-  getItNowLabel = "Get It Now!"
+  getItNowURL   = "https://drive.proton.me/urls/0ZVAYCWXPW#CXNhvZ09rdIh"
+  getItNowLabel = "Download The Latest Build"
 
   # GitHub repo for the changelog widget (format: "owner/repo")
   githubRepo = "Team-VANE/Sonic-Vane-GAME"
@@ -36,6 +36,15 @@ theme        = "hugo-theme-tf2"
   [[params.sidebarLinks]]
     label = "About"
     url   = "/about/"
+
+#  [[params.sidebarLinks]]
+#    label = "Contributors"
+#    url   = "/contributor/"
+
+  [[params.sidebarLinks]]
+    label = "Discord"
+    url   = "https://discord.gg/G6Dbs9BnAK"
+
 
   # Add more links here, for example:
   # [[params.sidebarLinks]]
