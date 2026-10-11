@@ -18,25 +18,29 @@
       {{ $hdrs = merge $hdrs (dict "Authorization" (printf "Bearer %s" $token)) }}
     {{ end }}
     {{ $opts := dict "headers" $hdrs }}
-    {{ with resources.GetRemote $apiURL $opts }}
-      {{ if not .Err }}
+    {{ with try (resources.GetRemote $apiURL $opts) }}
+      {{ with .Err }}
+        {{ warnf "%s" . }}
+      {{ else with .Value }}
         {{ $data := . | transform.Unmarshal }}
-        {{ $releaseOK    = true }}
-        {{ $releaseURL   = $data.html_url | default "#" }}
-        {{ $releaseName  = $data.name | default $data.tag_name | default "Release" }}
-        {{ with $data.published_at }}
-          {{ $releaseDate = . | time.Format "January 2, 2006" }}
-        {{ end }}
-        {{ $body := $data.body | default "" }}
-        {{ $allLines := slice }}
-        {{ range (split $body "\n") }}
-          {{ $trimmed := . | replaceRE `^[-*]\s*` "" | strings.TrimSpace }}
-          {{ if $trimmed }}
-            {{ $allLines = $allLines | append $trimmed }}
+        {{ if and $data (or $data.name $data.tag_name) }}
+          {{ $releaseOK    = true }}
+          {{ $releaseURL   = $data.html_url | default "#" }}
+          {{ $releaseName  = $data.name | default $data.tag_name | default "Release" }}
+          {{ with $data.published_at }}
+            {{ $releaseDate = . | time.Format "January 2, 2006" }}
           {{ end }}
+          {{ $body := $data.body | default "" }}
+          {{ $allLines := slice }}
+          {{ range (split $body "\n") }}
+            {{ $trimmed := . | replaceRE `^[-*]\s*` "" | strings.TrimSpace }}
+            {{ if $trimmed }}
+              {{ $allLines = $allLines | append $trimmed }}
+            {{ end }}
+          {{ end }}
+          {{ $releaseLines = first 5 $allLines }}
+          {{ $releaseExtra = gt (len $allLines) 5 }}
         {{ end }}
-        {{ $releaseLines = first 5 $allLines }}
-        {{ $releaseExtra = gt (len $allLines) 5 }}
       {{ end }}
     {{ end }}
   {{ end }}
