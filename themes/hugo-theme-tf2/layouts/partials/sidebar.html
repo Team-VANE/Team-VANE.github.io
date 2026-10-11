@@ -32,10 +32,22 @@
           {{ end }}
           {{ $body := $data.body | default "" }}
           {{ $allLines := slice }}
+          {{ $inChangelog := false }}
           {{ range (split $body "\n") }}
-            {{ $trimmed := . | replaceRE `^[-*]\s*` "" | strings.TrimSpace }}
-            {{ if $trimmed }}
-              {{ $allLines = $allLines | append $trimmed }}
+            {{ $line := . | strings.TrimSpace }}
+            {{ if and (not $inChangelog) (findRE `(?i)change\s*log:` $line) }}
+              {{ $inChangelog = true }}
+              {{ $rest := $line | replaceRE `(?i)^.*change\s*log:\s*` "" | replaceRE `^[-*+]\s*` "" | strings.TrimSpace }}
+              {{ if $rest }}
+                {{ $allLines = $allLines | append $rest }}
+              {{ end }}
+            {{ else if and $inChangelog (or (hasPrefix $line "#") (findRE `(?i)^\*{0,2}full\s*change\s*log` $line) (hasPrefix $line "---")) }}
+              {{ $inChangelog = false }}
+            {{ else if $inChangelog }}
+              {{ $trimmed := $line | replaceRE `^[-*+]\s*` "" | strings.TrimSpace }}
+              {{ if $trimmed }}
+                {{ $allLines = $allLines | append $trimmed }}
+              {{ end }}
             {{ end }}
           {{ end }}
           {{ $releaseLines = first 5 $allLines }}
