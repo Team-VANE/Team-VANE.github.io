@@ -15,7 +15,7 @@ theme        = "hugo-theme-tf2"
   blogLabel = "- News And Updates"
 
   # "Get It Now" button
-  getItNowURL   = "https://drive.proton.me/urls/0ZVAYCWXPW#CXNhvZ09rdIh"
+  getItNowURL   = "https://github.com/Team-VANE/Sonic-Vane-GAME/releases"
   getItNowLabel = "Download The Latest Build"
 
   # GitHub repo for the changelog widget (format: "owner/repo")
