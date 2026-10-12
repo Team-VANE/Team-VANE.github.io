@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [new-release, game-release]
+  schedule:
+    # Rebuild daily at 00:00 UTC as a fallback to ensure changelog stays in sync
+    - cron: '0 0 * * *'
 
 permissions:
   contents: read
