@@ -22,7 +22,7 @@ theme        = "hugo-theme-tf2"
   githubRepo = "Team-VANE/Sonic-Vane-GAME"
 
   # Footer
-  copyright  = "Team VANE. This is a non-profit fan project. All rights reserved to SONIC THE HEDGEHOG are of SEGA and SONIC TEAM."
+  copyright  = "Team VANE. This is a non-profit fan project. All rights reserved to SONIC THE HEDGEHOG are of SEGA and SONIC TEAM.<br>Game made With Godot."
   footerLogo = "images/vanelogo.webp"
 
   # Sidebar links
